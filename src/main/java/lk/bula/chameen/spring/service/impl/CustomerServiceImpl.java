@@ -26,26 +26,10 @@ public class CustomerServiceImpl implements CustomerService {
     public void saveCustomer(CustomerDTO dto) {
         if (!customerRepo.existsCustomerByEmail(dto.getEmail())) {
             System.out.println("athuleeee");
-            String latestId = customerRepo.getLatestId();
-            if (latestId != null) {
-                String id;
-                int nextNumber = Integer.parseInt(latestId.split("-")[1]) + 1;
-
-                if (nextNumber < 10) {
-                    id = "C00-00" + nextNumber;
-                } else if (nextNumber < 100) {
-                    id = "C00-0" + nextNumber;
-                } else {
-                    id = "C00-" + nextNumber;
-                }
-
-                dto.setId(id);
-
-            } else {
-                dto.setId("C00-001");
-            }
-
-            customerRepo.save(modelMapper.map(dto, Customer.class));
+            dto.setId(this.getNewId());
+            Customer customer = modelMapper.map(dto, Customer.class);
+            System.out.println(customer);
+            customerRepo.save(customer);
 
         } else {
             throw new RuntimeException("Your email is already in use");
@@ -86,4 +70,27 @@ public class CustomerServiceImpl implements CustomerService {
 
         }.getType());
     }
+
+    @Override
+    public String getNewId() {
+        String latestId = customerRepo.getLatestId();
+        if (latestId != null) {
+            String id;
+            int nextNumber = Integer.parseInt(latestId.split("-")[1]) + 1;
+
+            if (nextNumber < 10) {
+                id = "C00-00" + nextNumber;
+            } else if (nextNumber < 100) {
+                id = "C00-0" + nextNumber;
+            } else {
+                id = "C00-" + nextNumber;
+            }
+
+            return id;
+
+        } else {
+            return "C00-001";
+        }
+    }
+
 }
