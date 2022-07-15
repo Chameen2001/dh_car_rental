@@ -11,12 +11,16 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity
 @ToString
+@Entity(name = "customer")
 public class Customer {
     @Id
     private String id;
+    private String nic;
+    private String drivingId;
     private String name;
     private String address;
     private double salary;
+    private String email;
+    private String password;
 }
