@@ -52,7 +52,11 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public CarDTO searchCar(String id) {
-        return null;
+        if (carRepo.existsById(id)) {
+            return modelMapper.map(carRepo.findById(id), CarDTO.class);
+        } else {
+            throw new RuntimeException("There is not such a car like " + id);
+        }
     }
 
     @Override

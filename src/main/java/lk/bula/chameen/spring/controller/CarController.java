@@ -43,4 +43,9 @@ public class CarController {
         return new ResponseUtil(200, "Car deleted successfully", null);
     }
 
+    @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil searchCar(@PathVariable String id) {
+        return new ResponseUtil(200, "successfully searched car", carService.searchCar(id));
+    }
+
 }
