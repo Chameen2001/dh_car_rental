@@ -5,8 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.time.LocalDate;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,6 +14,13 @@ import javax.persistence.Id;
 @ToString
 @Entity(name = "maintenance")
 public class Maintenance {
+
     @Id
     private String id;
+    private LocalDate date;
+    private int millage;
+    private double serviceCharge;
+    @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
+    @JoinColumn(name = "carId",referencedColumnName = "regNo")
+    private Car car;
 }

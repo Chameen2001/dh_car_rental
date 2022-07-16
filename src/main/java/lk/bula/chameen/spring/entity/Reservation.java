@@ -20,11 +20,11 @@ public class Reservation {
     private int dateOfNeeded;
     private LocalDate dateOfNeed;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade ={CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name = "customerId", referencedColumnName = "id")
     private Customer customer;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
     @JoinColumn(name = "carRegNo", referencedColumnName = "regNo")
     private Car car;
 

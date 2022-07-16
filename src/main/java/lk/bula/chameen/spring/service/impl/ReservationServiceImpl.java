@@ -5,10 +5,11 @@ import lk.bula.chameen.spring.entity.Reservation;
 import lk.bula.chameen.spring.repo.ReservationRepo;
 import lk.bula.chameen.spring.service.ReservationService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -31,22 +32,34 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public void deleteReservation(String id) {
-
+        if (reservationRepo.existsById(id)) {
+            reservationRepo.deleteById(id);
+        }else {
+            throw new RuntimeException("There is no such a reservation under "+id);
+        }
     }
 
     @Override
     public void updateReservation(ReservationDTO dto) {
-
+        if (reservationRepo.existsById(dto.getId())) {
+            reservationRepo.save(modelMapper.map(dto,Reservation.class));
+        }else {
+            throw new RuntimeException("There is no such a reservation registered under "+dto.getId());
+        }
     }
 
     @Override
     public ReservationDTO searchReservation(String id) {
-        return null;
+        if (reservationRepo.existsById(id)) {
+            return modelMapper.map(reservationRepo.findById(id),ReservationDTO.class);
+        }else {
+            throw new RuntimeException("There is no such a reservation registered under "+id);
+        }
     }
 
     @Override
     public List<ReservationDTO> getAllReservation() {
-        return null;
+        return modelMapper.map(reservationRepo.findAll(),new TypeToken<List<ReservationDTO>>(){}.getType());
     }
 
     @Override
