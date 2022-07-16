@@ -3,7 +3,6 @@ package lk.bula.chameen.spring.controller;
 import lk.bula.chameen.spring.dto.CarDTO;
 import lk.bula.chameen.spring.service.CarService;
 import lk.bula.chameen.spring.util.ResponseUtil;
-import lk.bula.chameen.spring.util.enums.CarBrand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -28,14 +27,20 @@ public class CarController {
     public ResponseUtil addCar(@RequestBody CarDTO carDTO){
         System.out.println("add car meth invoked");
         carService.addCar(carDTO);
-        return new ResponseUtil(201,"Successfully added car",null);
+        return new ResponseUtil(201, "Successfully added car", null);
     }
 
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil updateCar(@RequestBody CarDTO carDTO){
+    public ResponseUtil updateCar(@RequestBody CarDTO carDTO) {
         carService.updateCar(carDTO);
-        return new ResponseUtil(200,"Successfully updated",null);
+        return new ResponseUtil(200, "Successfully updated", null);
+    }
+
+    @DeleteMapping(params = {"id"}, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil deleteCar(@RequestParam String id) {
+        carService.deleteCar(id);
+        return new ResponseUtil(200, "Car deleted successfully", null);
     }
 
 }

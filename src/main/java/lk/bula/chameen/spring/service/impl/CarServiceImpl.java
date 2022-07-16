@@ -34,7 +34,11 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void deleteCar(String id) {
-
+        if (carRepo.existsById(id)) {
+            carRepo.deleteById(id);
+        } else {
+            throw new RuntimeException("There is not such a car like " + id);
+        }
     }
 
     @Override
