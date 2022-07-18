@@ -20,4 +20,6 @@ public class Admin {
     private int phone;
     private String email;
     private String password;
+
+
 }

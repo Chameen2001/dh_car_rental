@@ -22,7 +22,7 @@ public class AdminController {
 
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil saveAdmin(@ModelAttribute AdminDTO adminDTO) {
+    public ResponseUtil saveAdmin(@RequestBody AdminDTO adminDTO) {
         adminService.addAdmin(adminDTO);
         return new ResponseUtil(201, "Successfully added", null);
     }

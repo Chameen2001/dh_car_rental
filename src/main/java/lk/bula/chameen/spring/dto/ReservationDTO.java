@@ -21,4 +21,8 @@ public class ReservationDTO {
     private LocalDate dateOfNeed;
     private CustomerDTO customer;
     private CarDTO car;
+
+    public ReservationDTO(String id) {
+        this.id = id;
+    }
 }

@@ -15,4 +15,8 @@ public class AdminDTO {
     private int phone;
     private String email;
     private String password;
+
+    public AdminDTO(String id) {
+        this.id = id;
+    }
 }

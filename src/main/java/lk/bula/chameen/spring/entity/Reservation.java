@@ -28,4 +28,5 @@ public class Reservation {
     @JoinColumn(name = "carRegNo", referencedColumnName = "regNo")
     private Car car;
 
+
 }
