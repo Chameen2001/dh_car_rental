@@ -7,11 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.CascadeType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.transaction.Transactional;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -19,13 +14,18 @@ import javax.transaction.Transactional;
 public class CarDTO {
     private String regNo;
     private CarBrand brand;
+    private String type;
     private CarModel model;
     private int noOfPassenger;
     private Transmission transmissionType;
     private String fuelType;
     private int millage;
-    private DurationRate rate;
+    private String dailyRT;
+    private String monthlyRT;
     private double priceForExKm;
-    private Color color;
+    private Colour colour;
     private Status status;
+    private String frontImage;
+    private String backImage;
+    private DurationRate durationRate;
 }

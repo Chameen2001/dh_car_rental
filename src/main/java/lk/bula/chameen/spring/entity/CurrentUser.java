@@ -10,19 +10,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
-@Entity(name = "durationRate")
-public class DurationRate {
+@Entity(name = "currentUser")
+public class CurrentUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private int dailyRate;
-    private int monthlyRate;
-
-    public DurationRate(int id) {
-        this.id = id;
-    }
+    private String email;
+    private String role;
 }

@@ -17,6 +17,8 @@ public class Car {
     @Id
     private String regNo;
 
+    private String type;
+
     @Enumerated(EnumType.STRING)
     private CarBrand brand;
 
@@ -38,9 +40,12 @@ public class Car {
     private double priceForExKm;
 
     @Enumerated(EnumType.STRING)
-    private Color color;
+    private Colour colour;
 
     @Enumerated(EnumType.STRING)
     private Status status;
+
+    private String frontImage;
+    private String backImage;
 
 }

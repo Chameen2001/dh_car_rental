@@ -1,7 +1,6 @@
 package lk.bula.chameen.spring.service;
 
 import lk.bula.chameen.spring.dto.CarDTO;
-import lk.bula.chameen.spring.dto.CustomerDTO;
 
 import java.util.List;
 
@@ -17,4 +16,6 @@ public interface CarService {
     List<CarDTO> getAllCars();
 
     String getNewId();
+
+    CarDTO searchCarByName(String name);
 }

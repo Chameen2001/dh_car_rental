@@ -7,14 +7,9 @@ import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data //apply getter and setter
+@Data
 @ToString
-public class CustomerDTO {
-    private String id;
-    private String nic;
-    private String drivingId;
-    private String name;
-    private String address;
+public class UserDTO {
     private String email;
     private String password;
 }

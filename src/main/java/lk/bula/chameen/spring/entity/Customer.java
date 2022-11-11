@@ -20,7 +20,6 @@ public class Customer {
     private String drivingId;
     private String name;
     private String address;
-    private double salary;
     private String email;
     private String password;
 }
